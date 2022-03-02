@@ -12,8 +12,8 @@ message User {
     string fname = 2;
     string city = 3;
     int64 phone = 4;
-    float height = 5;
-    bool married = 6;
+    double height = 5;
+    bool Married = 6;
 }
 
 message AllUsers {
