@@ -13,8 +13,6 @@ import (
 func (*Server) GetAllUsers(ctx context.Context, r *emptypb.Empty) (*usersPB.AllUsers, error) {
 	log.Println("GetAllUsers() called")
 
-	log.Printf("r : %#v", r)
-
 	allUsers := user.GetAllUsers()
 
 	toRespUsers := make([]*usersPB.User, len(allUsers))
