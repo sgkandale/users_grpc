@@ -11,23 +11,23 @@ import (
 func (*Server) GetUser(ctx context.Context, r *usersPB.GetUser_Request) (*usersPB.User, error) {
 	log.Println("GetUser() called")
 
-	userInstace, err := user.NewUser(r.Id)
+	userInstance, err := user.NewUser(r.Id)
 	if err != nil {
 		return nil, err
 	}
 
-	err = userInstace.LoadDetails()
+	err = userInstance.LoadDetails()
 	if err != nil {
 		return nil, err
 	}
 
 	return &usersPB.User{
-		Id:      userInstace.Id,
-		Fname:   userInstace.Fname,
-		City:    userInstace.City,
-		Phone:   userInstace.Phone,
-		Height:  userInstace.Height,
-		Married: userInstace.Married,
+		Id:      userInstance.Id,
+		Fname:   userInstance.Fname,
+		City:    userInstance.City,
+		Phone:   userInstance.Phone,
+		Height:  userInstance.Height,
+		Married: userInstance.Married,
 	}, nil
 
 }
