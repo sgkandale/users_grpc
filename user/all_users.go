@@ -82,3 +82,7 @@ var AllUsers = []User{
 		Married: true,
 	},
 }
+
+func GetAllUsers() []User {
+	return AllUsers
+}
