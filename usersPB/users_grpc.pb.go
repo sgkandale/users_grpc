@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UsersServiceClient interface {
-	GetUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*User, error)
+	GetUser(ctx context.Context, in *GetUser_Request, opts ...grpc.CallOption) (*User, error)
 	GetAllUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AllUsers, error)
 }
 
@@ -30,7 +30,7 @@ func NewUsersServiceClient(cc grpc.ClientConnInterface) UsersServiceClient {
 	return &usersServiceClient{cc}
 }
 
-func (c *usersServiceClient) GetUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*User, error) {
+func (c *usersServiceClient) GetUser(ctx context.Context, in *GetUser_Request, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := c.cc.Invoke(ctx, "/users.UsersService/GetUser", in, out, opts...)
 	if err != nil {
@@ -50,7 +50,7 @@ func (c *usersServiceClient) GetAllUsers(ctx context.Context, in *emptypb.Empty,
 
 // UsersServiceServer is the server API for UsersService service.
 type UsersServiceServer interface {
-	GetUser(context.Context, *emptypb.Empty) (*User, error)
+	GetUser(context.Context, *GetUser_Request) (*User, error)
 	GetAllUsers(context.Context, *emptypb.Empty) (*AllUsers, error)
 }
 
@@ -58,7 +58,7 @@ type UsersServiceServer interface {
 type UnimplementedUsersServiceServer struct {
 }
 
-func (*UnimplementedUsersServiceServer) GetUser(context.Context, *emptypb.Empty) (*User, error) {
+func (*UnimplementedUsersServiceServer) GetUser(context.Context, *GetUser_Request) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
 func (*UnimplementedUsersServiceServer) GetAllUsers(context.Context, *emptypb.Empty) (*AllUsers, error) {
@@ -70,7 +70,7 @@ func RegisterUsersServiceServer(s *grpc.Server, srv UsersServiceServer) {
 }
 
 func _UsersService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetUser_Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func _UsersService_GetUser_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/users.UsersService/GetUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServiceServer).GetUser(ctx, req.(*emptypb.Empty))
+		return srv.(UsersServiceServer).GetUser(ctx, req.(*GetUser_Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }

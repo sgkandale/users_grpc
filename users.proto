@@ -20,9 +20,13 @@ message AllUsers {
     repeated User users = 1;
 }
 
+message GetUser_Request {
+    int32 id = 1;
+}
+
 service UsersService {
 
-    rpc GetUser(google.protobuf.Empty) returns (User) {};
+    rpc GetUser(GetUser_Request) returns (User) {};
 
     rpc GetAllUsers(google.protobuf.Empty) returns (AllUsers) {};
     
