@@ -1,0 +1,29 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package users;
+
+option go_package = "./usersPB";
+
+// protoc -I="." --go-grpc_out="." --go_out="." users.proto
+
+message User {
+    int32 id = 1;
+    string fname = 2;
+    string city = 3;
+    int64 phone = 4;
+    float height = 5;
+    bool married = 6;
+}
+
+message AllUsers {
+    repeated User users = 1;
+}
+
+service UsersService {
+
+    rpc GetUser(google.protobuf.Empty) returns (User) {};
+
+    rpc GetAllUsers(google.protobuf.Empty) returns (AllUsers) {};
+    
+}
