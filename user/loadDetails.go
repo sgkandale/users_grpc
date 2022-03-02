@@ -7,13 +7,14 @@ import (
 
 func (user *User) LoadDetails() error {
 
-	for _, user := range AllUsers {
-		if user.Id == user.Id {
-			user.Fname = user.Fname
-			user.City = user.City
-			user.Phone = user.Phone
-			user.Height = user.Height
-			user.Married = user.Married
+	for _, eachUser := range AllUsers {
+		if eachUser.Id == user.Id {
+			user.Fname = eachUser.Fname
+			user.City = eachUser.City
+			user.Phone = eachUser.Phone
+			user.Height = eachUser.Height
+			user.Married = eachUser.Married
+			return nil
 		}
 	}
 
